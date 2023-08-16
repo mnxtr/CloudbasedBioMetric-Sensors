@@ -1,2 +1,7 @@
-import numpy as np
-import tensor as tf
+import numpy as np 
+import pandas as pd 
+import azureServer
+import sklearn
+from sklearn.ensemble import classifier
+from sklearn.metrics import ConfusionMatrixDisplay 
+import tensorflow as tf
