@@ -94,4 +94,42 @@ Arduino layout with 7 Segment Led
 
 ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2284e2e0-9bc4-458a-9863-9e2b902f71fa/Untitled.png)
 
+
+Research design and problem addressing
+
+-----------------
+
+
+- A research problem is a specific issue, contradiction, or gap in existing knowledge that needs to be addressed.
+
+- Identifying a research problem involves recognizing something problematic that requires attention, explanation, or a solution.
+
+- It is essential to have a well-defined research problem to guide the research process and to contribute to the field of study.
+
+- The process of defining a research problem includes:
+
+  - Identifying a broad topic of interest.
+
+  - Conducting a literature review to understand the current state of knowledge.
+  - Narrowing down to a specific issue that is under-explored or controversial.
+  - Formulating the problem into a clear, concise statement or question.
+- Types of research problems include:
+  - Descriptive: Documenting certain phenomena or situations.
+  - Exploratory: Investigating a topic to generate new insights or hypotheses.
+  - Explanatory: Understanding the causes or effects of certain phenomena.
+  - Predictive: Anticipating future occurrences based on current trends or data.
+  - Evaluative: Assessing the effectiveness of interventions, programs, or policies.
+- Defining a research problem is crucial for:
+  - Setting the direction and scope of the study.
+  - Ensuring the research is focused and manageable.
+  - Avoiding duplication of existing knowledge.
+  - Making a meaningful contribution to the academic field or practical application.
+- For more detailed guidance on defining a research problem, resources such as Scribbr's articles can provide step-by-step instructions and examples.
+
+
 ## Scopes
+
+
+
+
+
