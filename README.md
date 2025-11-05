@@ -129,7 +129,84 @@ Research design and problem addressing
 
 ## Scopes
 
+---
 
+## BPNN Model Integration
 
+The repository now includes comprehensive mathematical formulations for integrating a Backpropagation Neural Network (BPNN) with the EKG system.
+
+### Mathematical Formulations Documentation
+
+See [BPNN_MATHEMATICAL_FORMULATIONS.md](BPNN_MATHEMATICAL_FORMULATIONS.md) for complete mathematical documentation including:
+
+#### Core BPNN Mathematics
+- **Forward Propagation**: $z^{[l]} = W^{[l]} a^{[l-1]} + b^{[l]}$
+- **Activation Functions**: Sigmoid, Tanh, ReLU, Softmax (with derivatives)
+- **Loss Functions**: Binary/Categorical Cross-Entropy, MSE
+- **Backpropagation**: Complete gradient computation formulas
+- **Parameter Updates**: Gradient Descent, Momentum, Adam optimizer
+
+#### Signal Processing
+- **Normalization**: Min-Max and Z-Score formulas
+- **Filtering**: Moving Average and Butterworth Bandpass filters
+- **Feature Extraction**: HRV metrics (SDNN, RMSSD, pNN50)
+
+#### EKG Synthesis Model
+Mathematical model for generating synthetic EKG signals:
+
+$$\text{ECG}(t) = \sum_{i \in \{P, Q, R, S, T\}} A_i \exp\left(-\frac{(t - t_i)^2}{2\sigma_i^2}\right)$$
+
+### Jupyter Notebooks
+
+#### 1. Data Loading and Preprocessing (`dataloading.ipynb`)
+- Signal normalization implementations
+- EKG filtering techniques
+- HRV feature extraction
+- Window-based segmentation for neural network input
+- Complete preprocessing pipeline with visualizations
+
+#### 2. BPNN Implementation (`randomdatasetgenerator.ipynb`)
+- Complete BPNN implementation from scratch
+- Synthetic EKG dataset generation (normal and abnormal patterns)
+- Training and evaluation pipeline
+- Multi-class classification (Normal, Tachycardia, Bradycardia, Arrhythmia)
+- Performance visualization and analysis
+
+### Quick Start
+
+To use the BPNN model:
+
+```python
+# Install required dependencies
+pip install numpy pandas matplotlib scipy scikit-learn
+
+# Run the validation script
+python3 validate_formulations.py
+
+# Open Jupyter notebooks
+jupyter notebook dataloading.ipynb
+jupyter notebook randomdatasetgenerator.ipynb
+```
+
+### Model Architecture
+
+The implemented BPNN uses the following architecture:
+- **Input Layer**: 250 neurons (EKG window samples)
+- **Hidden Layer 1**: 128 neurons (ReLU activation)
+- **Hidden Layer 2**: 64 neurons (ReLU activation)
+- **Hidden Layer 3**: 32 neurons (ReLU activation)
+- **Output Layer**: 4 neurons (Softmax activation for 4 classes)
+
+**Total Parameters**: ~54,000 trainable parameters
+
+### Classification Classes
+
+The model classifies EKG signals into four categories:
+1. **Normal**: Regular heart rhythm (60-100 bpm)
+2. **Tachycardia**: Fast heart rate (>100 bpm)
+3. **Bradycardia**: Slow heart rate (<60 bpm)
+4. **Arrhythmia**: Irregular heart rhythm
+
+---
 
 
