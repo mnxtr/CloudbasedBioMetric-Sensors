@@ -131,6 +131,30 @@ Research design and problem addressing
 
 ---
 
+## Engineering Economics & Wealth Creation
+
+The repository includes a comprehensive engineering economics analysis that quantifies the wealth creation potential of this biometric monitoring platform.
+
+See [ENGINEERING_ECONOMICS.md](ENGINEERING_ECONOMICS.md) for the full analysis, covering:
+
+- **Time Value of Money** — PV, FV, and annuity calculations
+- **NPV & IRR** — Net Present Value and Internal Rate of Return for investment appraisal
+- **Payback Period** — Simple and discounted payback analysis
+- **Benefit-Cost Ratio** — BCR ≈ 3.79 at 10 % MARR (7-year horizon)
+- **Life-Cycle Cost Analysis** — Total cost of ownership in present-value terms
+- **Depreciation** — Straight-line and MACRS schedules for hardware assets
+- **Sensitivity Analysis** — NPV robustness across discount rates (5 – 20 %)
+
+The accompanying Python module implements all formulas:
+
+```python
+python3 engineering_economics.py
+```
+
+**Key result:** NPV ≈ $2.15 M at MARR = 10 %, with a simple payback period of ~4 months, demonstrating strong positive wealth creation.
+
+---
+
 ## BPNN Model Integration
 
 The repository now includes comprehensive mathematical formulations for integrating a Backpropagation Neural Network (BPNN) with the EKG system.
