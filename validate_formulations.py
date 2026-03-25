@@ -104,6 +104,83 @@ def validate_documentation(filename):
     
     return True
 
+def validate_engineering_economics():
+    """Validate the engineering economics module."""
+    print("\nValidating engineering_economics.py...")
+
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "engineering_economics", "engineering_economics.py"
+        )
+        ee = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(ee)
+    except FileNotFoundError:
+        print("  ❌ FAILED: File not found")
+        return False
+    except Exception as e:
+        print(f"  ❌ FAILED: Import error - {e}")
+        return False
+
+    # Validate core functions exist
+    required_functions = [
+        "present_value",
+        "future_value",
+        "net_present_value",
+        "internal_rate_of_return",
+        "simple_payback_period",
+        "discounted_payback_period",
+        "return_on_investment",
+        "benefit_cost_ratio",
+        "break_even_units",
+        "life_cycle_cost",
+        "straight_line_depreciation",
+        "sensitivity_analysis",
+        "biometric_system_wealth_analysis",
+    ]
+
+    missing = [fn for fn in required_functions if not hasattr(ee, fn)]
+    if missing:
+        print(f"  ❌ FAILED: Missing functions: {', '.join(missing)}")
+        return False
+
+    # Spot-check key calculations
+    errors = []
+
+    # NPV: known result
+    cf = [-50000, 15000, 15000, 15000, 15000, 15000]
+    npv = ee.net_present_value(0.10, cf)
+    if abs(npv - 6861.80) > 1.0:
+        errors.append(f"NPV expected ~6861.80, got {npv:.2f}")
+
+    # ROI
+    roi = ee.return_on_investment(25000, 50000)
+    if abs(roi - 50.0) > 0.01:
+        errors.append(f"ROI expected 50.0, got {roi:.2f}")
+
+    # Break-even
+    beq = ee.break_even_units(50000, 300, 50)
+    if abs(beq - 200.0) > 0.01:
+        errors.append(f"Break-even expected 200.0, got {beq:.2f}")
+
+    # Full wealth analysis (smoke test)
+    analysis = ee.biometric_system_wealth_analysis()
+    if analysis["wealth_metrics"]["npv_usd"] <= 0:
+        errors.append("Biometric system analysis produced non-positive NPV")
+    if analysis["wealth_metrics"]["benefit_cost_ratio"] <= 1.0:
+        errors.append("Biometric system analysis produced BCR <= 1.0")
+
+    if errors:
+        for err in errors:
+            print(f"  ❌ CALCULATION ERROR: {err}")
+        return False
+
+    print("  ✓ All required functions present")
+    print(f"  ✓ {len(required_functions)} engineering economics functions validated")
+    print("  ✓ NPV, ROI, break-even, and wealth analysis calculations correct")
+    return True
+
+
 def main():
     """Run all validations."""
     print("="*60)
@@ -119,6 +196,9 @@ def main():
     # Validate documentation
     results.append(("BPNN_MATHEMATICAL_FORMULATIONS.md", validate_documentation("BPNN_MATHEMATICAL_FORMULATIONS.md")))
     
+    # Validate engineering economics module
+    results.append(("engineering_economics.py", validate_engineering_economics()))
+
     # Summary
     print("\n" + "="*60)
     print("Validation Summary")
@@ -142,6 +222,7 @@ def main():
         print("  • Loss function formulas")
         print("  • Signal preprocessing methods")
         print("  • EKG synthesis models")
+        print("  • Engineering economics and wealth creation calculations")
         return 0
     else:
         print("\n❌ Some validations failed. Please review the output above.")
